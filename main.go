@@ -8,8 +8,8 @@ import (
 
 func main() {
 	godotenv.Load()
-	// 路由注册
-	router.InitRouter()
 	//数据库初始化
 	database.ConnectMysql()
+	// 路由注册
+	router.InitRouter()
 }

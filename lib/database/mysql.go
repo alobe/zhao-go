@@ -9,6 +9,8 @@ import (
 	"zhao-go/lib/model"
 )
 
+var DB *gorm.DB
+
 func ConnectMysql() {
 	dsn := os.Getenv("DATABASE_DSN")
 	fmt.Println(dsn)
@@ -21,6 +23,5 @@ func ConnectMysql() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	DB = db
 }
-
-var DB *gorm.DB
