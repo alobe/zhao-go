@@ -16,9 +16,12 @@ func InitRouter() {
 		AllowMethods: "GET",
 	}))
 
+	api := app.Group("/api")
+
 	//路由绑定
-	images := app.Group("/api/image")
+	images := api.Group("/image")
 	images.Get("/all", getAll)
+	images.Post("/create", createImage)
 
 	app.Listen(":3000")
 }
