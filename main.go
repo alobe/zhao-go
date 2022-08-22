@@ -1,23 +1,15 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
+	"zhao-go/lib/database"
+	"zhao-go/lib/router"
 )
 
 func main() {
-	app := fiber.New()
-
-	// 定义全局的中间件
-	app.Use(func(c *fiber.Ctx) error {
-		fmt.Println("🥇 First 2222handler")
-		return c.Next()
-	})
-	// 定义路由
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("你好小钟同学!")
-	})
-
-	app.Listen(":3000")
+	godotenv.Load()
+	// 路由注册
+	router.InitRouter()
+	//数据库初始化
+	database.ConnectMysql()
 }
