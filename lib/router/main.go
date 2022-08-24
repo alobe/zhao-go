@@ -22,6 +22,7 @@ func InitRouter() {
 	images := api.Group("/image")
 	images.Get("/all", getAll)
 	images.Post("/create", createImage)
+	images.Post("/batch_create", createImages)
 
 	app.Listen(":3000")
 }

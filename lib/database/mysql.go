@@ -2,11 +2,12 @@ package database
 
 import (
 	"fmt"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 	"log"
 	"os"
 	"zhao-go/lib/model"
+
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
@@ -24,4 +25,8 @@ func ConnectMysql() {
 		log.Fatal(err)
 	}
 	DB = db
+}
+
+func GetTableDb(model interface{}, table string) *gorm.DB {
+	return DB.Model(model).Table(table)
 }
