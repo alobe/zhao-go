@@ -1,9 +1,8 @@
 package database
 
 import (
-	"fmt"
 	"log"
-	"os"
+	"zhao-go/config"
 	"zhao-go/lib/model"
 
 	"gorm.io/driver/mysql"
@@ -13,8 +12,7 @@ import (
 var DB *gorm.DB
 
 func ConnectMysql() {
-	dsn := os.Getenv("DATABASE_DSN")
-	fmt.Println(dsn)
+	dsn := config.Config.Mysql.Dsn
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	log.Print(db)
 	if err != nil {

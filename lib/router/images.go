@@ -19,9 +19,19 @@ func ImageDb() *gorm.DB {
 
 type Res fiber.Map
 
+const prefix = "kkkk"
+
 func getAll(c *fiber.Ctx) error {
+	// ctx := context.Background()
 	var images []model.Image
 	ImageDb().Limit(100).Find(&images)
+	// s, _ := database.Redis.Get(ctx, prefix).Result()
+	// if len(s) == 0 {
+	// 	fmt.Printf("no cachekey %s", prefix)
+	// 	database.Redis.Set(ctx, prefix, "kkkkkk", time.Hour*24)
+	// } else {
+	// 	fmt.Printf("key: %s", s)
+	// }
 	return res(c, 200, "", images)
 }
 
