@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/jinzhu/configor"
 )
@@ -15,6 +16,12 @@ var Config = struct {
 		Address  string
 		Password string
 		Db       int
+	}
+
+	Jwt struct {
+		Secret string
+		Issuer string
+		Expire time.Duration
 	}
 }{}
 

@@ -5,3 +5,8 @@ redis:
   address: 47.104.4.196:6379
   password: 742685Ab
   db: 0
+
+jwt:
+  sectet: 18a6413dc4fe394c66345ebe501b2f26
+  issuer: zhao-go
+  expire: 86400
