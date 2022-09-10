@@ -1,10 +1,10 @@
 package config
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/jinzhu/configor"
+	"github.com/rs/zerolog/log"
 )
 
 var Config = struct {
@@ -27,6 +27,6 @@ var Config = struct {
 
 func InitConfig() {
 	// db config load
-	configor.Load(&Config, "./config/db.yaml")
-	fmt.Printf("config %#v", Config)
+	configor.Load(&Config, "./config/common.yaml")
+	log.Info().Msgf("config ===> %v", Config)
 }

@@ -1,35 +1,31 @@
 package middleware
 
 import (
-	"fmt"
 	"time"
+	"zhao-go/lib/util"
 
 	"github.com/gofiber/fiber/v2"
-	z "go.uber.org/zap"
+	"github.com/rs/zerolog/log"
 )
 
-func Byte2String(bytes []byte) string {
-	return fmt.Sprintf("%x", bytes)
-}
-
-func Logger(logger *z.Logger) fiber.Handler {
+func Logger() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		start := time.Now()
 		uri := c.Request().URI()
-		path := Byte2String(uri.Path())
-		query := Byte2String(uri.QueryString())
+		path := util.String(uri.Path())
+		query := util.String(uri.QueryString())
 		c.Next()
 		cost := time.Since(start)
-		logger.Info(path,
-			z.Int("status", c.Response().StatusCode()),
-			z.String("methods", Byte2String(c.Request().Header.Method())),
-			z.String("path", path),
-			z.String("query", query),
-			z.String("ip", c.IP()),
-			z.String("user-agent", Byte2String(c.Request().Header.UserAgent())),
-			z.Duration("cost", cost),
-			z.Error(c.Context().Err()),
-		)
+		log.Info().
+			Int("status", c.Response().StatusCode()).
+			Str("methods", util.String(c.Request().Header.Method())).
+			Str("path", path).
+			Str("query", query).
+			Str("ip", c.IP()).
+			Str("ua", util.String(c.Request().Header.UserAgent())).
+			Dur("cost", cost).
+			Err(c.Context().Err()).
+			Msg("router middleware inspact")
 		return nil
 	}
 }
