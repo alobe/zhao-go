@@ -4,12 +4,17 @@ package router
 import (
 	"zhao-go/lib/middleware"
 
+	"github.com/goccy/go-json"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func InitRouter() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		JSONEncoder: json.Marshal,
+		JSONDecoder: json.Unmarshal,
+	})
 	// middleware
 	app.Use(
 		cors.New(cors.Config{
