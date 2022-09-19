@@ -5,7 +5,6 @@ import (
 	"zhao-go/lib/database"
 	"zhao-go/lib/logger"
 	"zhao-go/lib/router"
-	// "zhao-go/lib/util"
 )
 
 func main() {
@@ -17,12 +16,4 @@ func main() {
 	database.InitDB()
 	// 路由注册
 	router.InitRouter()
-	// var images [] string
-	// // path := "./config/image.json"
-	// // Json := util.Json[struct {images []string}]{
-	// // 	path: path,
-	// // 	value: struct {images []string}{
-	// // 		images: images,
-	// // 	},
-	// // }
 }

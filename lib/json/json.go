@@ -1,4 +1,4 @@
-package util
+package json
 
 import (
 	"io/ioutil"
@@ -41,4 +41,11 @@ func (j *Json[T]) Write(data T) error {
 		return err
 	}
 	return nil
+}
+
+func Init[T interface{}](path string, value T, ins Json[T]) {
+	ins = Json[T]{
+		path:  path,
+		value: value,
+	}
 }
