@@ -43,8 +43,8 @@ func (j *Json[T]) Write(data T) error {
 	return nil
 }
 
-func Init[T interface{}](path string, value T, ins Json[T]) {
-	ins = Json[T]{
+func Init[T interface{}](path string, value T) Json[T] {
+	return Json[T]{
 		path:  path,
 		value: value,
 	}
